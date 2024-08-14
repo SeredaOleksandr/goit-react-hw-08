@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import Contact from '../Contact/Contact';
 import s from './ContactList.module.css';
-import { selectIsError, selectIsLoading } from '../../redux/selectors';
+import { selectIsError, selectIsLoading } from '../../redux/contacts/selectors';
 import { useEffect } from 'react';
-import { getContacts } from '../../redux/contactsOps';
 import toast, { Toaster } from 'react-hot-toast';
-import { selectFilteredContacts } from '../../redux/filtersSlice';
+import { selectFilteredContacts } from '../../redux/filters/slice';
+import { getContacts } from '../../redux/contacts/operations';
 
 export default function ContactList() {
   const dispatch = useDispatch();
