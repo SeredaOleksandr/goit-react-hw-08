@@ -1,15 +1,23 @@
-import s from './App.module.css';
-import ContactForm from './ContactForm/ContactForm';
-import SearchBox from './SearchBox/SearchBox';
-import ContactList from './ContactList/ContactList';
+import './App.module.css';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './Layout';
+import Home from '../pages/Home/Home';
+import NotFound from '../pages/NotFound/NotFound';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
 
 export default function App() {
   return (
-    <div className={s.wrapper}>
-      <h1 className={s.title}>Phonebook</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+          <Route path="contacts" element={<PhoneBook />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   );
 }

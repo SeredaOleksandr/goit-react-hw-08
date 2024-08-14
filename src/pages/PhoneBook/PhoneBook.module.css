@@ -1,0 +1,11 @@
+.wrapper {
+  width: 350px;
+  box-shadow: rgba(58, 61, 64, 0.372) 0px 10px 20px 10px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.title {
+  margin-bottom: 24px;
+}
