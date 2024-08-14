@@ -6,7 +6,7 @@ const Header = () => {
     <header className={s.header}>
       <h2>Auth</h2>
       <h3>Name</h3>
-      <ul className={s.list}>
+      <ul className={s.nav}>
         <li>
           <NavLink to="/">Home</NavLink>
         </li>

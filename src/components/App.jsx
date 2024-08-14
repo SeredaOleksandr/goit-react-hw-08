@@ -1,22 +1,24 @@
 import './App.module.css';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
-import Home from '../pages/Home/Home';
-import NotFound from '../pages/NotFound/NotFound';
-import Login from '../pages/Login/Login';
-import Register from '../pages/Register/Register';
+import HomePage from '../pages/HomePage/HomePage';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
+import ContactsPage from '../pages/ContactsPage/ContactsPage';
 
 export default function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="contacts" element={<PhoneBook />} />
-          <Route path="*" element={<NotFound />} />
+          <Route intex element={<HomePage />} /> //! path="/" - його замінив
+          intex
+          <Route path="contacts" element={<ContactsPage />} />
         </Route>
+        <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegistrationPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
   );
