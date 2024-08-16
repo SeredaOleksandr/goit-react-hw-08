@@ -9,6 +9,8 @@ import ContactsPage from '../pages/ContactsPage/ContactsPage';
 import { useDispatch } from 'react-redux';
 import { getCurrentThunk } from '../redux/auth/operations';
 import { useEffect } from 'react';
+import { PrivateRoute } from '../pages/PrivateRoute';
+import { RestrictedRoute } from '../pages/RestrictedRoute';
 
 export default function App() {
   const dispatch = useDispatch();
@@ -23,10 +25,31 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route intex element={<HomePage />} /> //! path="/" - його замінив
           intex
-          <Route path="contacts" element={<ContactsPage />} />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsPage />
+              </PrivateRoute>
+            }
+          />
         </Route>
-        <Route path="login" element={<LoginPage />} />
-        <Route path="register" element={<RegistrationPage />} />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute>
+              <LoginPage />
+            </RestrictedRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <RestrictedRoute>
+              <RegistrationPage />
+            </RestrictedRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </>
