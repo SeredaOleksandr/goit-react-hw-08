@@ -6,8 +6,17 @@ import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 import LoginPage from '../pages/LoginPage/LoginPage';
 import RegistrationPage from '../pages/RegistrationPage/RegistrationPage';
 import ContactsPage from '../pages/ContactsPage/ContactsPage';
+import { useDispatch } from 'react-redux';
+import { getCurrentThunk } from '../redux/auth/operations';
+import { useEffect } from 'react';
 
 export default function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCurrentThunk());
+  }, [dispatch]);
+
   return (
     <>
       <Routes>

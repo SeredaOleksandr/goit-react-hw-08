@@ -1,14 +1,17 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://6697f16402f3150fb66f8fcb.mockapi.io/';
+import { clearToken, goitApi, setToken } from '../../config/goitApi';
 
 export const getContacts = createAsyncThunk(
   'contacts/getContacts',
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get('contacts');
-      return response.data;
+      // Перед виконанням запиту переконайтеся, що токен встановлений
+      const token = localStorage.getItem('token'); // або інший спосіб зберігання токена
+      if (!token) throw new Error('No authorization token found');
+      setToken(token); // Встановлює заголовок з токеном
+
+      const { data } = await goitApi.get('/contacts');
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -17,10 +20,10 @@ export const getContacts = createAsyncThunk(
 
 export const addContact = createAsyncThunk(
   'contacts/addContact',
-  async ({ name, number }, thunkAPI) => {
+  async (contact, thunkAPI) => {
     try {
-      const response = await axios.post('contacts', { name, number });
-      return response.data;
+      const { data } = await goitApi.post('contacts', contact);
+      return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
     }
@@ -29,12 +32,24 @@ export const addContact = createAsyncThunk(
 
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (id, thunkAPI) => {
+  async (contactId, thunkAPI) => {
     try {
-      const response = await axios.delete(`contacts/${id}`);
-      return id;
+      await goitApi.delete(`/contacts/${contactId}`);
+      return contactId;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e);
+      return thunkAPI.rejectWithValue(e.message);
+    }
+  }
+);
+
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, contactChange }, thunkAPI) => {
+    try {
+      const { data } = await goitApi.patch(`contacts/${id}`, contactChange);
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
 );
