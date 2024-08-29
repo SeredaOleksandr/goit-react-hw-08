@@ -25,8 +25,10 @@ export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
   (contacts, nameFilter) => {
     const normalizedFilter = nameFilter ? nameFilter.toLowerCase() : '';
-    return contacts.filter(({ name }) =>
-      name.toLowerCase().includes(normalizedFilter)
+    return contacts.filter(
+      ({ name, number }) =>
+        name.toLowerCase().includes(normalizedFilter) ||
+        number.includes(nameFilter)
     );
   }
 );
