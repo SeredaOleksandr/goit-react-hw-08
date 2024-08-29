@@ -5,12 +5,11 @@ export const getContacts = createAsyncThunk(
   'contacts/getContacts',
   async (_, thunkAPI) => {
     try {
-      // Перед виконанням запиту переконайтеся, що токен встановлений
-      const token = localStorage.getItem('token'); // або інший спосіб зберігання токена
+      const token = localStorage.getItem('token');
       if (!token) throw new Error('No authorization token found');
-      setToken(token); // Встановлює заголовок з токеном
+      setToken(token);
 
-      const { data } = await goitApi.get('/contacts');
+      const { data } = await goitApi.get('contacts');
       return data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -34,7 +33,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
   async (contactId, thunkAPI) => {
     try {
-      await goitApi.delete(`/contacts/${contactId}`);
+      await goitApi.delete(`contacts/${contactId}`);
       return contactId;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
