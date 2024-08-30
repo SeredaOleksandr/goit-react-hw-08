@@ -5,10 +5,7 @@ import { useDispatch } from 'react-redux';
 import { addContact } from '../../redux/contacts/operations';
 
 export default function ContactForm() {
-  const initialValues = {
-    name: '',
-    number: '',
-  };
+  const dispatch = useDispatch();
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -23,20 +20,28 @@ export default function ContactForm() {
       .required('Required'),
   });
 
-  const dispatch = useDispatch();
+  const initialValues = {
+    name: '',
+    number: '',
+  };
 
-  const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+  const handleSubmit = (values, options) => {
+    dispatch(
+      addContact({
+        name: values.name,
+        number: values.number,
+      })
+    );
 
-    actions.resetForm();
+    options.resetForm();
   };
 
   return (
     <div className={s.formWrapper}>
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
         validationSchema={validationSchema}
+        onSubmit={handleSubmit}
       >
         <Form className={s.form}>
           <label className={s.label}>

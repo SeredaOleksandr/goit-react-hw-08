@@ -6,16 +6,18 @@ import { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { selectFilteredContacts } from '../../redux/filters/slice';
 import { fetchContacts } from '../../redux/contacts/operations';
+import { selectToken } from '../../redux/auth/selectors';
 
 export default function ContactList() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectFilteredContacts);
   const isError = useSelector(selectIsError);
   const isLoading = useSelector(selectIsLoading);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    dispatch(fetchContacts(token));
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (isLoading) {

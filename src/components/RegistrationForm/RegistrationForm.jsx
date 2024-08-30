@@ -1,12 +1,26 @@
 import { Field, Form, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
-import { registerThunk } from '../../redux/auth/operations';
+import { registerUser } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import * as Yup from 'yup';
 
 const RegistrationForm = () => {
   const isLoadIng = useSelector(selectIsLoggedIn);
+
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .min(3, 'Must be at least 3 characters')
+      .max(50, 'Must be 50 characters or less')
+      .required('Required'),
+    email: Yup.string().email('Invalid email format').required('Required'),
+    password: Yup.string()
+      .min(6, 'Must be at least 6 characters')
+      .required('Required'),
+  });
+
   const dispatch = useDispatch();
+
   const initialValues = {
     name: '',
     email: '',
@@ -14,7 +28,13 @@ const RegistrationForm = () => {
   };
 
   const handleSubmit = (values, options) => {
-    dispatch(registerThunk(values));
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    dispatch(registerUser(userData));
     options.resetForm();
   };
 
@@ -24,7 +44,11 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
         <Form>
           <Field name="name" placeholder="Enter your name" />
           <Field name="email" placeholder="Enter your email" />
