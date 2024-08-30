@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
-import { lazy, useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import PrivateRoute from '../routes/PrivateRoute';
 import RestrictedRoute from '../routes/RestrictedRoute';
 import { selectIsRefreshing } from '../redux/auth/selectors';
@@ -28,7 +28,7 @@ export default function App() {
   return isRefreshing ? (
     <Loader />
   ) : (
-    <>
+    <Suspense>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -59,6 +59,6 @@ export default function App() {
         />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
