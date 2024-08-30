@@ -4,8 +4,8 @@ import Layout from './Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import { refreshUser } from '../redux/auth/operations';
 import { lazy, useEffect } from 'react';
-import { PrivateRoute } from '../routes/PrivateRoute';
-import { RestrictedRoute } from '../routes/RestrictedRoute';
+import PrivateRoute from '../routes/PrivateRoute';
+import RestrictedRoute from '../routes/RestrictedRoute';
 import { selectIsRefreshing } from '../redux/auth/selectors';
 import Loader from './Loader/Loader';
 
@@ -31,7 +31,7 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route intex element={<HomePage />} />
+          <Route index element={<HomePage />} />
           <Route
             path="contacts"
             element={
