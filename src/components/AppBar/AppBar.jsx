@@ -9,12 +9,12 @@ const AppBar = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <div>
+    <header className={s.header}>
       <nav className={s.navbar}>
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
       </nav>
-    </div>
+    </header>
   );
 };
 

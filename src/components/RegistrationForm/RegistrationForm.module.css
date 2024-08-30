@@ -1,0 +1,50 @@
+.formWrapper {
+  width: 300px;
+  padding: 10px;
+  margin: 12px auto;
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  & button {
+    padding: 8px 16px;
+    background-color: lightslategray;
+    color: #ffff;
+    border: none;
+    border-radius: 8px;
+  }
+}
+
+.label {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  & span {
+    font-weight: bold;
+    padding-left: 12px;
+  }
+}
+
+.input {
+  width: 286px;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.error {
+  color: red;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 2px; */
+}

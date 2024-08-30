@@ -4,6 +4,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { registerUser } from '../../redux/auth/operations';
 import { selectIsLoggedIn } from '../../redux/auth/selectors';
 import * as Yup from 'yup';
+import s from './RegistrationForm.module.css';
 
 const RegistrationForm = () => {
   const isLoadIng = useSelector(selectIsLoggedIn);
@@ -43,22 +44,31 @@ const RegistrationForm = () => {
   }
 
   return (
-    <div>
+    <div className={s.formWrapper}>
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
         onSubmit={handleSubmit}
       >
-        <Form>
-          <Field name="name" placeholder="Enter your name" />
-          <Field name="email" placeholder="Enter your email" />
+        <Form className={s.form}>
           <Field
+            className={s.input}
+            name="name"
+            placeholder="Enter your name"
+          />
+          <Field
+            className={s.input}
+            name="email"
+            placeholder="Enter your email"
+          />
+          <Field
+            className={s.input}
             name="password"
             type="password"
             placeholder="Enter your password"
           />
           <button type="submit">Register</button>
-          <p>
+          <p className={s.text}>
             Do you already have an account?
             <span>
               <Link to="/login">Sign in</Link>

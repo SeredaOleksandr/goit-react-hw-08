@@ -1,11 +1,24 @@
+// import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+// import { selectIsLoggedIn, selectUser } from '../../redux/auth/selectors';
+import s from './Navigation.module.css';
 
 const Navigation = () => {
+  // const user = useSelector(selectUser);
+  // const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const dispatch = useDispatch();
+
   return (
-    <div className="nav-item">
-      <Link to="/">Home</Link>
-      <Link to="/contacts">Contacts</Link>
-    </div>
+    <>
+      <ul className={s.nav}>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/contacts">Contacts</Link>
+        </li>
+      </ul>
+    </>
   );
 };
 
