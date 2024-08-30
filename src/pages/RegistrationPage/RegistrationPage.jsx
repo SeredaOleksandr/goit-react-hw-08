@@ -12,10 +12,10 @@ const RegistrationPage = () => {
   }
 
   return (
-    <>
+    <div className={s.wrapper}>
       <h2 className={s.registration_header}>Registration</h2>
       <RegistrationForm />
-    </>
+    </div>
   );
 };
 

@@ -1,6 +1,6 @@
 .header {
   width: 100vw;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   padding: 20px;
@@ -15,8 +15,10 @@
   left: 0;
 }
 
-.block {
-  display: block;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .none {

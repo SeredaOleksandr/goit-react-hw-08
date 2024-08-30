@@ -1,0 +1,26 @@
+.nav_item {
+  display: flex;
+  & p {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @media screen and (max-width: 768px) {
+      top: 38px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 480px) {
+      top: 20px;
+    }
+  }
+  & button {
+    padding: 8px 16px;
+    background-color: lightslategray;
+    color: #ffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+}
