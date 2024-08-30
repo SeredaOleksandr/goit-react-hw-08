@@ -18,8 +18,8 @@ const slice = createSlice({
   },
 });
 
-export const filterReducer = slice.reducer;
 export const { changeFilter } = slice.actions;
+export const filterReducer = slice.reducer;
 
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectNameFilter],
